@@ -10,7 +10,13 @@ export const register = (username, password, email) => {
     body: JSON.stringify({username, password, email})
   })
   .then((response) => {
-    return response.json();
+    try {
+      if (response.status === 200){
+        return response.json();
+      }
+    } catch(e){
+      return (e)
+    }
   })
   .then((res) => {
     return res;
@@ -26,7 +32,12 @@ export const authorize = (identifier, password) => {
     },
     body: JSON.stringify({identifier, password})
   })
-  .then((response => response.json()))
+  .then((response) => 
+  {
+    console.log('auth', response);
+    response.json()
+  }
+  )
   .then((data) => {
     if (data.user){
       localStorage.setItem('jwt', data.jwt);

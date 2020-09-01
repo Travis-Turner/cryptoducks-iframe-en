@@ -28,7 +28,7 @@ class Register extends React.Component {
     if (this.state.password === this.state.confirmPassword){
       let { username, password, email } = this.state;
       duckAuth.register(username, password, email).then((res) => {
-        if(res.statusCode !== 400){
+        if(res){
           this.setState({
             message: ''
           }, () => {
