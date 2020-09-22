@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      userData: null
     }
     this.tokenCheck = this.tokenCheck.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -25,12 +26,12 @@ class App extends React.Component {
       loggedIn: true
     })
   }
-  tokenCheck = () => {
-    if (localStorage.getItem('jwt')){
-      let jwt = localStorage.getItem('jwt');
+  tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt){
       duckAuth.getContent(jwt).then((res) => {
         if (res){
-          let userData = {
+          const userData = {
             username: res.username,
             email: res.email
           }
@@ -60,7 +61,7 @@ class App extends React.Component {
           </div>
         </Route>
         <Route>
-          {this.state.loggedIn ? <Redirect to="/ducks" /> : <Redirect to="/login" />}
+          {<Redirect to={`/${this.state.loggedIn ? 'ducks' : 'login'}`} />}
         </Route>
       </Switch>
     )

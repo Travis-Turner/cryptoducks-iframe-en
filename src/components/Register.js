@@ -26,7 +26,7 @@ class Register extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     if (this.state.password === this.state.confirmPassword){
-      let { username, password, email } = this.state;
+      const { username, password, email } = this.state;
       duckAuth.register(username, password, email).then((res) => {
         if(res){
           this.setState({
@@ -36,7 +36,7 @@ class Register extends React.Component {
           })
         } else {
           this.setState({
-            message: 'Что-то пошло не так!'
+            message: 'Something went wrong, please try again.'
           })
         }
       });
@@ -56,19 +56,19 @@ class Register extends React.Component {
           <label for="username">
             Username:
           </label>
-          <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+          <input required id="username" name="username" type="text" value={this.state.username} onChange={this.handleChange} />
           <label for="email">
             Email:
           </label>
-          <input id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
+          <input required id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
           <label for="password">
             Password:
           </label>
-          <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+          <input required id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
           <label for="confirmPassword">
             Confirm password:
           </label>
-          <input id="confirmPassword" name="confirmPassword" type="password" value={this.state.confirmPassword} onChange={this.handleChange} />
+          <input required id="confirmPassword" name="confirmPassword" type="password" value={this.state.confirmPassword} onChange={this.handleChange} />
           <div className="register__button-container">
             <button type="submit" className="register__link">Sign up</button>
           </div>

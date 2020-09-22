@@ -31,7 +31,7 @@ class Login extends React.Component {
     .then((data) => {
       if (!data){
         return this.setState({
-          message: 'Что-то пошло не так!'
+          message: 'Something went wrong, please try again.'
         });
       }
       if (data.jwt){

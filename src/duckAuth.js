@@ -10,13 +10,7 @@ export const register = (username, password, email) => {
     body: JSON.stringify({username, password, email})
   })
   .then((response) => {
-    try {
-      if (response.status === 200){
-        return response.json();
-      }
-    } catch(e){
-      return (e)
-    }
+    return response.json();
   })
   .then((res) => {
     return res;
@@ -32,18 +26,11 @@ export const authorize = (identifier, password) => {
     },
     body: JSON.stringify({identifier, password})
   })
-  .then((response) => 
-  {
-    console.log('auth', response);
-    response.json()
-  }
-  )
+  .then((response => response.json()))
   .then((data) => {
-    if (data.user){
+    if (data.jwt){
       localStorage.setItem('jwt', data.jwt);
       return data;
-    } else {
-      return;
     }
   })
   .catch(err => console.log(err))

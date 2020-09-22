@@ -17,7 +17,7 @@ function NavBar () {
       </div>
       <ul className="navbar__nav">
         <li><Link to="ducks" className="navbar__link">Ducks</Link></li>
-        <li><Link to="my-profile" className="navbar__link">My Profile</Link></li>
+        <li><Link to="my-profile" className="navbar__link">My profile</Link></li>
         <li><button onClick={signOut} className="navbar__link navbar__button">Sign out</button></li>
       </ul>
     </div>
